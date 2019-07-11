@@ -1,0 +1,33 @@
+{
+  "name": "birthday-reminder",
+  "version": "1.0.0",
+  "description": "A birthday reminder app is use in storing ones contact birth day so as to wish them on their birthday..",
+  "main": "app.js",
+  "engines": {
+    "node": "11.5.0",
+    "npm": "6.4.1"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "connect-mongo": "^2.0.2",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^6.2.0",
+    "express": "~4.16.0",
+    "express-session": "^1.15.6",
+    "http-errors": "^1.6.3",
+    "mongoose": "^5.3.12",
+    "mongoose-auto-increment": "^5.0.1",
+    "morgan": "~1.9.0",
+    "multer": "^1.4.1",
+    "nodemon": "^1.18.10",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "request": "^2.88.0"
+  }
+}
