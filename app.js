@@ -8,7 +8,7 @@ const http = require('https');
 const autoIncrement = require('mongoose-auto-increment');
 dotenv.config();
 var url = process.env.MONGOLAB_URI;
-// Database connection setup 
+// Database connection implementation
 mongoose.connect(url, {
       useCreateIndex: true,
     useNewUrlParser: true  }).then(
