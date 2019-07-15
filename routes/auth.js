@@ -27,7 +27,7 @@ router.post('/signup', function (req,res) {
           const  accessToken  =  jwt.sign({ id:  user.id }, process.env.SECRET_KEY, {
               expiresIn:  expiresIn
           });
-          return  res.status(200).send({
+          return  res.status(200).json({
              "user":  result,
              "access_token":  accessToken,
              "expires_in":  expiresIn ,  
@@ -52,7 +52,7 @@ router.post('/login', function(req, res) {
         const  accessToken  =  jwt.sign({ id:  user.id }, process.env.SECRET_KEY, {
             expiresIn:  expiresIn
         });
-        res.status(200).send({ "user":  user, "access_token":  accessToken, "expires_in":  expiresIn});
+        res.status(200).json({ "user":  user, "access_token":  accessToken, "expires_in":  expiresIn});
     });
 }); 
 module.exports = router;
