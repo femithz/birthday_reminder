@@ -24,15 +24,15 @@ var UserSchema=mongoose.Schema({
     },
     password:{
         type:String,
-        require:true
+        require:true,
      },
      createdAt:{
         type:Date,
-    	require:true
+    	require:true,
     },
     updatedAt:{
         type:Date,
-    	require:true
+    	require:true,
     },
 });
 
