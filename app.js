@@ -7,10 +7,9 @@ dotenv.config();
 const cors = require('cors');
 const http = require('https');
 const autoIncrement = require('mongoose-auto-increment');
-
 // var url = process.env.MONGOLAB_URI;
 // Database connection implementation
-mongoose.connect(process.env.MONGOLAB_URI, {
+mongoose.connect('mongodb://femithz:birthdayreminder12345@ds247377.mlab.com:47377/birthday_reminder', {
       useCreateIndex: true,
     useNewUrlParser: true  }).then(
   (res) => {
