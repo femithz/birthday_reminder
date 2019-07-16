@@ -7,9 +7,9 @@ const cors = require('cors');
 const http = require('https');
 const autoIncrement = require('mongoose-auto-increment');
 dotenv.config();
-var url = process.env.MONGOLAB_URI;
+// var url = process.env.MONGOLAB_URI;
 // Database connection implementation
-mongoose.connect(url, {
+mongoose.connect(process.env.MONGOLAB_URI, {
       useCreateIndex: true,
     useNewUrlParser: true  }).then(
   (res) => {
