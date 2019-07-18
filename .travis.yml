@@ -1,0 +1,4 @@
+language: Nodejs
+Nodejs:
+  - 11.5.0
+  - 8.9.0
