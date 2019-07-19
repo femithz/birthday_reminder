@@ -18,19 +18,6 @@ describe('Users', () => {
     })
 })
 
-describe('/GET auth', () => {
-    it('it should GET all the a', (done) => {
-      chai.request(server)
-          .get('/book')
-          .end((err, res) => {
-                res.should.have.status(200);
-                res.body.should.be.a('array');
-                res.body.length.should.be.eql(0);
-            done();
-          });
-    });
-});
-
 // section to test for registering user
 describe('/POST user', () => {
     it('it should not POST a user without pages field', (done) => {
