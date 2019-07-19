@@ -1,7 +1,6 @@
 language: node_js
-
 node_js:
-  - 11.5
-  - 8.9
-
-before_script:
+ - "stable"
+services:
+ - mongodb
+ script: npm test
