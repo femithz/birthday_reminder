@@ -30,3 +30,28 @@ describe('/GET auth', () => {
           });
     });
 });
+
+// section to test for registering user
+describe('/POST user', () => {
+    it('it should not POST a user without pages field', (done) => {
+        let user = {
+            name: "Ajayi Oluwafemi",
+            email: "test@gamil.com",
+            password: 1954,
+            createdAt:Date.now()
+        }
+      chai.request(app)
+          .post('/signup')
+          .send(user)
+          .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.a('object');
+                res.body.should.have.property('errors');
+                // res.body.errors.should.have.property('pages');
+                // res.body.errors.pages.should.have.property('kind').eql('required');
+            done();
+          });
+    });
+
+});
+// });
