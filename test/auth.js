@@ -20,7 +20,7 @@ describe('Users', () => {
 
 // section to test for registering user
 describe('/POST user', () => {
-    it('it should not POST a user without pages field', (done) => {
+    it('it should not POST a user without  field', (done) => {
         let user = {
             name: "Ajayi Oluwafemi",
             email: "test@gamil.com",
@@ -34,11 +34,28 @@ describe('/POST user', () => {
                 res.should.have.status(200);
                 res.body.should.be.a('object');
                 res.body.should.have.property('errors');
-                // res.body.errors.should.have.property('pages');
-                // res.body.errors.pages.should.have.property('kind').eql('required');
             done();
           });
     });
 
 });
-// });
+// section to test for login
+describe('/POST user', () => {
+    it('it should not POST a user without the two credential to login', (done) => {
+        let user = {
+            email: "test@gamil.com",
+            password: 1954
+        }
+      chai.request(app)
+          .post('/loginin')
+          .send(user)
+          .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.a('object');
+                res.body.should.have.property('errors');
+                res.redirect('location', '/')
+            done();
+          });
+    });
+
+});
