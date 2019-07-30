@@ -4,6 +4,7 @@ process.env.NODE_ENV = 'test';
 
 const mongoose = require("mongoose");
 const User = require('../models/user');
+const server = require('../routes/auth.js');
 
 //Require the dev-dependencies
 const chai = require('chai');
@@ -28,7 +29,7 @@ describe('/POST user', () => {
             password: 1954,
             createdAt:Date.now()
         }
-      chai.request(app)
+      chai.request(server)
           .post('/signup')
           .send(user)
           .end((err, res) => {
@@ -38,25 +39,24 @@ describe('/POST user', () => {
             done();
           });
     });
-
 });
+
 // section to test for login
 describe('/POST user', () => {
     it('it should not POST a user without the two credential to login', (done) => {
         let user = {
             email: "test@gamil.com",
-            password: 1954
+            password: 1954,
         }
-      chai.request(app)
+      chai.request(server)
           .post('/loginin')
           .send(user)
           .end((err, res) => {
                 res.should.have.status(200);
                 res.body.should.be.a('object');
                 res.body.should.have.property('errors');
-                res.redirect('location', '/')
+                res.redirect('location', '/');
             done();
           });
     });
-
 });
