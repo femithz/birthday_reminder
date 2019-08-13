@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node app.js",
-    "test": "mocha"
+    "test": "mocha --recursive --exit"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -21,6 +21,8 @@
     "express": "~4.16.0",
     "express-session": "^1.15.6",
     "http-errors": "^1.6.3",
+    "jsonwebtoken": "^8.5.1",
+    "mockgoose": "^8.0.2",
     "mongoose": "^5.3.12",
     "mongoose-auto-increment": "^5.0.1",
     "morgan": "~1.9.0",
