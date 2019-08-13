@@ -7,17 +7,33 @@ dotenv.config();
 const cors = require('cors');
 const http = require('https');
 const autoIncrement = require('mongoose-auto-increment');
-// var url = process.env.MONGOLAB_URI;
+const DB_URI = process.env.MONGOLAB_URI;
 // Database connection implementation
-mongoose.connect('mongodb://femithz:birthdayreminder12345@ds247377.mlab.com:47377/birthday_reminder', {
+if (process.env.NODE_ENV === 'test') {
+  const Mockgoose = require('mockgoose').Mockgoose;
+  const mockgoose = new Mockgoose(mongoose);
+  mockgoose.prepareStorage().then(() => {
+    mongoose.connect(DB_URI, {
       useCreateIndex: true,
-    useNewUrlParser: true  }).then(
-  (res) => {
-   res.status(200).json({message:"Connection Failure"});
-  }
-).catch((err) => {
- err => console.error();
-});
+       useNewUrlParser: true  }).then(
+      (res) => {
+      res.status(200).json({message:"Connection Failure"});
+      }
+    ).catch((err) => {
+    err => console.error();
+    });
+  })
+} else {
+      mongoose.connect(DB_URI, {
+        useCreateIndex: true,
+      useNewUrlParser: true  }).then(
+    (res) => {
+    res.status(200).json({message:"Connection Failure"});
+    }
+    ).catch((err) => {
+    err => console.error();
+    });
+}
 autoIncrement.initialize(mongoose.connection);
 var app = express();
 const authRouter = require('./routes/auth');
