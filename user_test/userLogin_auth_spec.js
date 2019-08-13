@@ -11,7 +11,7 @@ describe('/POST user', () => {
         let user = {
             email: "test@gamil.com",
             password: 2019
-        }
+        };
       chai.request(app)
           .post('/login')
           .send(user)
@@ -26,14 +26,14 @@ describe('/POST user', () => {
         let user = {
             email: "test@gamil.com",
             // password: 2019
-        }
+        };
       chai.request(app)
           .post('/login')
           .send(user)
           .end((err, res) => {
                 res.should.have.status(200);
                 const body = res.user;
-                expect(body.errors.text.name).to.equal('ValidatorError')
+                expect(body.errors.text.name).to.equal('ValidatorError');
             done();
           });
     });

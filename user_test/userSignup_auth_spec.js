@@ -28,15 +28,15 @@ describe('/POST user', () => {
         let user = {
             name: "Ajayi Oluwafemi",
             password: 2019,
-            createdAt:Date.now()
-        }
+            createdAt:Date.now(),
+        };
       chai.request(app)
           .post('/signup')
           .send(user)
           .end((err, res) => {
                 res.should.have.status(501);
                 const body = res.user;
-                expect(body.errors.text.name).to.equal('ValidatorError')
+                expect(body.errors.text.name).to.equal('ValidatorError');
             done();
           });
     });
