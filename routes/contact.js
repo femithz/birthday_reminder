@@ -29,4 +29,19 @@ router.post('/contacts', function(req,res,next) {
        }
     })
 })
+// router to fetch user contact
+router.get('getContacts', function (req,res,next) {
+   Contact
+   .find()
+   .select('name birthday')
+   .populate('user')
+   .exec()
+   .then(result => {
+    console.log(result);
+         return res.status(200).json(result);
+})
+.catch(err => {
+          res.status(500).json(err);
+})
+})
 module.exports = router;
