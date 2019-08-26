@@ -4,7 +4,6 @@ process.env.NODE_ENV = 'test';
 const expect = require('chai').expect;
 const app = require('../app');
 
-
 // section to test for registering user
 describe('/POST user', () => {
     it('it should not POST a user without  field', (done) => {

@@ -44,4 +44,26 @@ router.get('getContacts', function (req,res,next) {
           res.status(500).json(err);
 })
 })
+// router to fetch user contact detail by id
+router.get('getContact/:contactId', function (req,res,next) {
+  const id = req.params.contactId;
+  Contact.findById(id)
+  .select()
+  .populate('user')
+  .exec()
+  .then(doc=>{
+     if(doc){
+      res.status(200).json(doc);
+     }else{
+      res.status(200).json({
+        message:'Invalid Id Number'
+      });
+     }
+    })
+    .catch(err=>{
+      res.status(500).json({
+          error:err
+       });
+    });
+})
 module.exports = router;

@@ -25,7 +25,7 @@ describe('/POST user', () => {
     it('Fail, to login user in', (done) => {
         let user = {
             email: "test@gamil.com",
-            // password: 2019
+            password: 2019
         };
       chai.request(app)
           .post('/login')
