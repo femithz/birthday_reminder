@@ -14,6 +14,7 @@ router.post('/contacts', function(req,res,next) {
       address:req.body.address,
       birthday:req.body.birthday,
       phoneNumber:req.body.phoneNumber,
+      contactOwner,
       createdAt:Date.now(),
     });
     contact.save(function (err,result) {
