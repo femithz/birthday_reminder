@@ -7,7 +7,6 @@ const autoIncrement = require('mongoose-auto-increment');
 var UserSchema=mongoose.Schema({
     _id:{
         type:Number,
-        unique: true,
     },
     name:{
     	type:String,
@@ -43,5 +42,5 @@ UserSchema.methods.isValid=function (hashedpassword) {
     return bcrypt.compareSync(hashedpassword,this.password);
 };
 
-// UserSchema.plugin(autoIncrement.plugin, 'User');
+UserSchema.plugin(autoIncrement.plugin, 'User');
 module.exports=mongoose.model('User',UserSchema);
