@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === 'test') {
     err => console.error();
     });
 }
-autoIncrement.initialize(mongoose.connection);
+// autoIncrement.initialize(mongoose.connection);
 var app = express();
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/user');

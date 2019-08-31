@@ -43,5 +43,5 @@ UserSchema.methods.isValid=function (hashedpassword) {
     return bcrypt.compareSync(hashedpassword,this.password);
 };
 
-UserSchema.plugin(autoIncrement.plugin, 'User');
+// UserSchema.plugin(autoIncrement.plugin, 'User');
 module.exports=mongoose.model('User',UserSchema);
