@@ -7,7 +7,6 @@ const autoIncrement = require('mongoose-auto-increment');
 var UserSchema=mongoose.Schema({
     _id:{
         type:Number,
-        unique: true,
     },
     name:{
     	type:String,
