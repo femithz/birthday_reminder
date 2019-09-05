@@ -13,6 +13,7 @@ describe('POST contact', () => {
             address: "No 28,Michigan,America",
             birthday:  "29-02-2016",
             phoneNumber:  08145019560,
+            contactOwner: req.user._id,
             createdAt:Date.now()
         }
         chai.request(app)
