@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 // Schema for user contact
 var mongoose=require('mongoose');
 var Schema=mongoose.Schema;

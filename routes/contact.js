@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 var express = require('express');
 var router = express.Router();
-var Contact = require('../models/contact')
+var Contact = require('../models/contact');
 /* User section. */
 router.get('/', function(req, res, next) {
   res.send('Api section for user activties');
@@ -21,7 +21,7 @@ router.post('/contacts', function(req,res,next) {
     contact.save(function (err,result) {
       if(err) { 
         return res.status(501).json({
-          message:'New Contact cannot be creaeted'
+          message:'New Contact cannot be creaeted',
         })
        } else {
          return res.status(200).json({
@@ -58,7 +58,7 @@ router.get('getContact/:contactId', function (req,res,next) {
       res.status(200).json(doc);
      }else{
       res.status(200).json({
-        message:'Invalid Id Number'
+        message:'Invalid Id Number',
       });
      }
     })
