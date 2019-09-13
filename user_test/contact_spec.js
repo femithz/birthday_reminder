@@ -15,9 +15,15 @@ describe('POST contact', () => {
             phoneNumber:  08145019560,
             contactOwner: req.user._id,
             createdAt:Date.now(),
-        }
+        };
         chai.request(app)
         .post('/')
         .send(contact)
+        .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('errors');
+        done();
+      });
     })
 })

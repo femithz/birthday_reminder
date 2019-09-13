@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 var express = require('express');
 var router = express.Router();
 var Contact = require('../models/contact')
@@ -25,11 +26,11 @@ router.post('/contacts', function(req,res,next) {
        } else {
          return res.status(200).json({
            contact:result,
-           message:'You have successfully add a new contact'
+           message:'You have successfully add a new contact',
          })
        }
-    })
-})
+    });
+});
 // router to fetch user contact
 router.get('getContacts', function (req,res,next) {
    Contact
@@ -66,5 +67,5 @@ router.get('getContact/:contactId', function (req,res,next) {
           error:err
        });
     });
-})
+});
 module.exports = router;
