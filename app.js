@@ -37,7 +37,7 @@ const DB_URI = process.env.MONGOLAB_URI;
 // }
 
 // Database connection setup 
-mongoose.connect(DB_URI, {
+mongoose.connect('DB_URI', {
    useNewUrlParser: true, 
    useCreateIndex: true 
   }).then(() => console.log("MongoDB successfully connected")).catch((err) => {
