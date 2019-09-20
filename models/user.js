@@ -2,6 +2,7 @@
 var mongoose=require('mongoose');
 var Schema=mongoose.Schema;
 var bcrypt=require('bcryptjs');
+var Contact = require('./contact');
 const autoIncrement = require('mongoose-auto-increment');
 
 var UserSchema=mongoose.Schema({
@@ -29,6 +30,7 @@ var UserSchema=mongoose.Schema({
         type:Date,
     	require:true,
     },
+    contacts:[Contact],
     updatedAt:{
         type:Date,
     	require:true,
