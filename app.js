@@ -10,31 +10,36 @@ const http = require('https');
 const autoIncrement = require('mongoose-auto-increment');
 const DB_URI = process.env.MONGOLAB_URI;
 // Database connection implementation
-if (process.env.NODE_ENV === 'test') {
-  const Mockgoose = require('mockgoose').Mockgoose;
-  const mockgoose = new Mockgoose(mongoose);
-  mockgoose.prepareStorage().then(() => {
-    mongoose.connect(DB_URI, {
-      useCreateIndex: true,
-       useNewUrlParser: true  }).then(
-      (res) => {
-      res.status(200).json({message:"Connection Failure"});
-      }
-    ).catch((err) => {
-    err => console.error();
-    });
-  })
-} else {
-      mongoose.connect(DB_URI, {
-        useCreateIndex: true,
-      useNewUrlParser: true  }).then(
-    (res) => {
-    res.status(200).json({message:"Connection Failure"});
-    }
-    ).catch((err) => {
-    err => console.error();
-    });
-}
+// if (process.env.NODE_ENV === 'test') {
+//   const Mockgoose = require('mockgoose').Mockgoose;
+//   const mockgoose = new Mockgoose(mongoose);
+//   mockgoose.prepareStorage().then(() => {
+//     mongoose.connect(DB_URI).then(
+//       (res) => {
+//       res.status(200).json({message:"Connection Failure"});
+//       }
+//     ).catch((err) => {
+//     err => console.error();
+//     });
+//   })
+// // } else {
+//       mongoose.connect(DB_URI, {
+//         useCreateIndex: true,
+//       useNewUrlParser: true  }).then(
+//     (res) => {
+//       console.log(res);
+//     // res.status(200).json({message:"Connection Failure"});
+//     }
+//     ).catch((err) => {
+//       console.log(err);
+//     err => console.error();
+//     });
+// }
+
+// Database connection setup 
+mongoose.connect(DB_URI, { useNewUrlParser: true, useCreateIndex: true }).then(() => console.log("MongoDB successfully connected")).catch((err) => {
+  console.log(err)
+});
 autoIncrement.initialize(mongoose.connection);
 var app = express();
 const authRouter = require('./routes/auth');
