@@ -83,6 +83,60 @@ router.get('getContact/:contactId', verifyToken, function (req,res,next) {
        });
     });
 });
+// Function to edit user contact
+router.put('editContact/:IdContact', verifyToken, function (req,res) {
+     Contact.findById(res.params.IdContact, function (err, result) {
+       if (err) {
+            res.status(500).json({
+              error:err
+          });
+       } else {
+        if (result.contactOwner.id.equals(req.user_id)) {
+          res.status(200).json({
+            result:result,
+            message: "You have successfully edit your contact"
+        })
+        } else {
+          res.status(501).json({
+                    error: err
+           })
+        }
+       }
+     })
+})
+// Router to delete contact on user list
+router.delete('deleteContact/:Id', verifyToken, function (req,res) {
+  Request.deleteOne({id:req.params.Id}, function (err,result) {
+    if (err) {
+      res.status(500).json({
+        error:err
+     });
+    } else {
+      if (result.contactOwner.id.equals(req.user_id),err, result) {          
+                res.status(200).json({
+                    result:result,
+                    message: "You have successfully delete your contact"
+                })
+      } else {
+        res.status(500).json({
+                  error: err
+         })
+      }
+    }
+  })
+  // .exec()
+  // .then(result => {
+  //     console.log(result);
+  //     res.status(200).json({
+  //         message: "Client Request deleted successfully"
+  //     })
+  // })
+  // .catch(err => {
+  //     res.status().json({
+  //         error: err
+  //     })
+  // })
+})
 // Function to get to verifyToken
 function verifyToken(req,res,next) {
     const  bearerHeader = req.headers['authorization'];
