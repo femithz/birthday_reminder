@@ -58,7 +58,7 @@ router.get('/reminders', verifyToken, function (req,res,next) {
 })
 })
 // router to fetch user reminder detail by id
-router.get('/reminders/:id', verifyToken, function (req,res,next) {
+router.get('/:id', verifyToken, function (req,res,next) {
   const id = req.params.id;
   Reminder.findById(id)
   .select()
@@ -80,7 +80,7 @@ router.get('/reminders/:id', verifyToken, function (req,res,next) {
     });
 });
 //   section to patch the reminder
-router.put('/reminders/:id', verifyToken,reminderOwner, function (req,res,next) {
+router.put('/:id', verifyToken,reminderOwner, function (req,res,next) {
   const id=req.params.id;
   const updateOps={};
   for(const ops of req.body){
@@ -101,7 +101,7 @@ router.put('/reminders/:id', verifyToken,reminderOwner, function (req,res,next) 
   });
 })
 // Function to delete reminder
-router.delete('/reminders/:id',verifyToken,reminderOwner, function (req,res) {
+router.delete('/:id',verifyToken,reminderOwner, function (req,res) {
   Reminder.findByIdAndRemove(req.params.id, function (err) {
     if (err) {
       res.status(501).json(err);
