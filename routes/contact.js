@@ -39,7 +39,7 @@ router.post('/contacts', verifyToken, function(req,res,next) {
   })
 });
 // router to fetch user contact
-router.get('getContacts', verifyToken, function (req,res,next) {
+router.get('/getContacts', verifyToken, function (req,res,next) {
   const pagination = req.query.pagination
    ?parseInt(req.query.pagination)
    : 10;
@@ -62,7 +62,7 @@ router.get('getContacts', verifyToken, function (req,res,next) {
 })
 })
 // router to fetch user contact detail by id
-router.get('getContact/:contactId', verifyToken, function (req,res,next) {
+router.get('/:contactId', verifyToken, function (req,res,next) {
   const id = req.params.contactId;
   Contact.findById(id)
   .select()
@@ -84,7 +84,7 @@ router.get('getContact/:contactId', verifyToken, function (req,res,next) {
     });
 });
 // Function to edit user contact
-router.put('editContact/:IdContact', verifyToken, function (req,res) {
+router.put('/:IdContact', verifyToken, function (req,res) {
      Contact.findById(res.params.IdContact, function (err, result) {
        if (err) {
             res.status(500).json({
@@ -105,7 +105,7 @@ router.put('editContact/:IdContact', verifyToken, function (req,res) {
      })
 })
 // Router to delete contact on user list
-router.delete('deleteContact/:Id', verifyToken, function (req,res) {
+router.delete('/:IdContact', verifyToken, function (req,res) {
   Request.deleteOne({id:req.params.Id}, function (err,result) {
     if (err) {
       res.status(500).json({
