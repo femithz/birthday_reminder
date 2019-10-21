@@ -10,24 +10,24 @@ var ReminderSchema=mongoose.Schema({
         unique: true,
     },
     userId: {
-         id:{
-             type: mongoose.Schema.Types.ObjectId,
-              ref: 'User'
-          },
-          username:{
+        id:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        username:{
               type: String
-          }
-         },
+        }
+    },
     days:{
            type:Number,
     },
-     createdAt:{
+    createdAt:{
         type:Date,
     	require:true,
     },
     updatedAt:{
-        type: Date, 
-        default: Date.now 
+        type:Date,
+    	require:true,
     }
 });
 ReminderSchema.plugin(autoIncrement.plugin, 'Reminder');
