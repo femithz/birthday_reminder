@@ -18,16 +18,16 @@ var ReminderSchema=mongoose.Schema({
               type: String
           }
          },
-         days:{
+    days:{
            type:Number,
-         },
+    },
      createdAt:{
         type:Date,
     	require:true,
     },
     updatedAt:{
-        type:Date,
-    	require:true,
+        type: Date, 
+        default: Date.now 
     }
 });
 ReminderSchema.plugin(autoIncrement.plugin, 'Reminder');
