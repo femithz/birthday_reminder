@@ -83,74 +83,64 @@ router.get('/:contactId', verifyToken, function (req,res,next) {
        });
     });
 });
-// Function to edit user contact
-router.put('/:IdContact', verifyToken, function (req,res) {
-     Contact.findById(res.params.IdContact, function (err, result) {
-       if (err) {
-            res.status(500).json({
-              error:err
-          });
-       } else {
-        if (result.contactOwner.id.equals(req.user_id)) {
-          res.status(200).json({
-            result:result,
-            message: "You have successfully edit your contact"
-        })
-        } else {
-          res.status(501).json({
-                    error: err
-           })
-        }
-       }
-     })
+//   section to patch the contact
+router.put('/:contactId', verifyToken,contactOwner, function (req,res,next) {
+  const id=req.params.contactId;
+  const updateOps={};
+  for(const ops of req.body){
+     updateOps[ops.propName]=ops.value;
+  }
+  Contact.findOneAndUpdate({_id:id},{$set:updateOps})
+  .exec()
+  .then(result=>{
+    res.status(200).json({
+      message:'Contact updated successfully',
+    });
+  })
+  .catch(err=>{
+    res.status(200).json({
+      error:err
+    });
+  });
 })
-// Router to delete contact on user list
-router.delete('/:IdContact', verifyToken, function (req,res) {
-  Request.deleteOne({id:req.params.Id}, function (err,result) {
+// Function to delete Contact
+router.delete('/:contactId',verifyToken,contactOwner, function (req,res) {
+  Contact.findByIdAndRemove(req.params.contactId, function (err) {
     if (err) {
-      res.status(500).json({
-        error:err
-     });
+      res.status(501).json(err);
     } else {
-      if (result.contactOwner.id.equals(req.user_id),err, result) {          
-                res.status(200).json({
-                    result:result,
-                    message: "You have successfully delete your contact"
-                })
-      } else {
-        res.status(500).json({
-                  error: err
-         })
-      }
+      res.status(200).json({
+        message:"contact has been successfully removed"
+      });
     }
   })
-  // .exec()
-  // .then(result => {
-  //     console.log(result);
-  //     res.status(200).json({
-  //         message: "Client Request deleted successfully"
-  //     })
-  // })
-  // .catch(err => {
-  //     res.status().json({
-  //         error: err
-  //     })
-  // })
 })
 // Function to get to verifyToken
 function verifyToken(req,res,next) {
     const  bearerHeader = req.headers['authorization'];
     if (typeof bearerHeader !== 'undefined') {
        const bearer = bearerHeader.split();
-
        const bearerToken = bearer[1];
-
        req.token = bearerToken;
-
-
        next();
     } else {
       res.sendStatus(403);
     }
+}
+// Funtion to check for the user that owns the contact
+function contactOwner(req,res,next) {
+  if (req.isAuthenticated()) {
+       Contact.findById(req.params.id, function (err,result) {
+         if (err) {
+           return res.status(501).json(err);
+         } else {
+           if (result.contactOwner.id.equals(res.user._id)) {
+           next();  
+           } else {
+             console.log('Permission not granted');
+           }
+         }
+       })
+  }
 }
 module.exports = router;
