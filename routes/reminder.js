@@ -118,7 +118,7 @@ function verifyToken(req,res,next) {
     } else {
       res.sendStatus(403);
     }
-}
+};
 // Funtion to check for the user that owns the contact
 function reminderOwner(req,res,next) {
   if (req.isAuthenticated()) {
@@ -134,5 +134,5 @@ function reminderOwner(req,res,next) {
          }
        })
   }
-}
+};
 module.exports = router;
