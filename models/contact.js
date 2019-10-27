@@ -9,7 +9,7 @@ var ContactSchema=mongoose.Schema({
         type:Number,
         unique: true,
     },
-    contactOwner: {
+    contactOwner: [{
          id:{
              type: mongoose.Schema.Types.ObjectId,
               ref: 'User'
@@ -17,7 +17,7 @@ var ContactSchema=mongoose.Schema({
           username:{
               type: String
           }
-         },
+         }],
     name:{
     	type:String,
         require:true,
