@@ -47,6 +47,8 @@ autoIncrement.initialize(mongoose.connection);
 var app = express();
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
+const contactRouter = require('./routes/contact');
+const reminderRouter = require('./routes/reminder');
 const port=process.env.PORT || 3000;
 // view engine setup
 app.use(express.static(path.join(__dirname, 'public')));
@@ -54,6 +56,8 @@ app.use(bodyparser.json());
 // Api endpoint setup
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
+app.use('/contact', contactRouter);
+app.use('/reminder', reminderRouter);
 app.get('*', (req,res) => {
   res.send('Welcome to Birthday Reminder Api an awesome idea!!!');
 });
